@@ -1,0 +1,16 @@
+informacion de amazon 
+
+url de resultado : https://www.amazon.com/<item>
+producto : div.puisg-row
+nombre : span.a-size-medium a-color-base a-text-normal
+precio : span.a-size-base s-underline-text
+url : a.a-link-normal s-underline-text s-underline-link-text s-link-style 
+
+
+informacion de mercado libre 
+
+url de resultado : https://listado.mercadolibre.com.co/<item>
+producto: div.andes-card ui-search-result ui-search-result--core andes-card--flat andes-card--padding-16
+nombre: h2.ui-search-item__title
+precio: span.andes-money-amount__fraction
+url : a.ui-search-item__group__element ui-search-link__title-card ui-search-link
