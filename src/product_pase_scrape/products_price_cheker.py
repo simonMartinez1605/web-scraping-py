@@ -2,7 +2,12 @@ from product_pase_scrape.product_repositoy import Product_repository
 from selenium import webdriver
 from product_pase_scrape.amazon_product_page_scraper import AmazonProductsPageScraper
 from product_pase_scrape.meli_products_page_scraper import MelProdcutsPageScraper
+import os 
+import smtplib
+from email.message import EmailMessage
+from dotenv import load_dotenv
 
+load_dotenv() 
 
 class productsPriceCheker : 
     def __init__(self) -> None:
@@ -25,10 +30,28 @@ class productsPriceCheker :
 
             if(new_amazon_price != product["amazon_price"]):
                 self.notify(f"El precio del producto {product['name']} en Amazon ha cambiado")
+                self.repository.update_product(product["_id"], {"amazon_price": new_amazon_price})
 
             if(new_meli_price != product["meli_price"]):
                 self.notify(f"El precio del producto {product['name']} en Mercado Libre ha cambiado")
+                self.repository.update_product(product["_id"], {"meli_price": new_meli_price})
+
 
     
     def notify (self, msg: str): 
-        print(msg)
+        user = os.getenv("USER")
+        password = os.getenv("PASSWORD")
+
+        email_message = EmailMessage() 
+
+        email_message.set_content(msg)
+        email_message["subject"] = "Actualizacion de precios de productos"
+        email_message["to"] = user
+        email_message["from"] = user 
+
+        server = smtplib.SMTP("simonmartinez1605@gmail.com", 537)
+
+        server.starttls()
+        server.login(user, password)
+        server.send_message(email_message)
+        server.quit()
