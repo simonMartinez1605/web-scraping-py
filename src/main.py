@@ -2,6 +2,7 @@ from selenium import webdriver
 from product_pase_scrape.amazon_product_page_scraper import AmazonProductsPageScraper
 from product_pase_scrape.meli_products_page_scraper import MelProdcutsPageScraper
 from product_pase_scrape.product_repositoy import Product_repository
+from product_pase_scrape.products_price_cheker import productsPriceCheker
 
 def init() : 
     item_name = input("Ingrese el nombre del producto que desea buscar: ")
@@ -49,3 +50,5 @@ def init() :
 
 if __name__ == "__main__": 
     init()
+    prodcut_price = productsPriceCheker()
+    productsPriceCheker.check()
