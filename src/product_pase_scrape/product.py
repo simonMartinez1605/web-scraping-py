@@ -4,5 +4,5 @@ from dataclasses import dataclass
 class product: 
     id: int
     name : str
-    price : str
+    price : float
     url: str 

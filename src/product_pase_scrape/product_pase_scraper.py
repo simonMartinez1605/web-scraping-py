@@ -11,3 +11,7 @@ class ProductsPageScraper(ABC):
     @abstractclassmethod
     def get_products(self, html_content : BeautifulSoup) -> list[product]: 
         ...  
+
+    @abstractclassmethod
+    def get_current_price(self, html_content: BeautifulSoup) -> float: 
+        ...
